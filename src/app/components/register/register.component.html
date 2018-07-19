@@ -1,0 +1,104 @@
+
+<div class="row show-hide-message">
+  <div [ngClass]="messageClass">
+    {{message}}
+  </div>
+</div>
+
+<div class="panel panel-primary">
+  <div class="panel-heading">
+    REGISTER HERE
+  </div>
+
+  <div class="panel-body">
+
+    <form [formGroup]="form" (submit)="onRegisterSubmit()">
+
+
+      <div 
+      [ngClass]="{'has-error': (form.controls.email.errors && form.controls.email.dirty)|| (!emailValid && form.controls.email.dirty) , 'has-success' : (!form.controls.email.errors && emailValid)}">
+        <label for="exampleInputEmail">EMAIL</label>
+        <br>
+        <input type="email" 
+              formControlName="email" 
+              name="email" 
+              id="exampleInputEmail" 
+              class="form-control" 
+              placeholder="email"
+              (blur)="checkEmail()">
+
+        <ul class="help-block">
+          <li *ngIf="form.controls.email.errors?.required && form.controls.email.dirty">
+            this field is required
+          </li>
+          <li *ngIf="emailMsg">{{emailMsg}}</li>
+        </ul>
+      </div>
+
+      <div [ngClass]="{'has-error': (form.controls.username.errors && form.controls.username.dirty) || (!usernameValid && form.controls.username.dirty) , 'has-success' : (!form.controls.username.errors && usernameValid)}">
+        <label for="exampleInputUsername">USERNAME</label>
+        <br>
+        <input type="username" 
+               formControlName="username" 
+               name="username" 
+               id="exampleInputUsername" 
+               class="form-control" 
+               placeholder="username"
+               (blur)="checkusername()">
+
+        <ul class="help-block">
+          <li *ngIf="form.controls.username.errors?.required && form.controls.username.dirty">
+            this field is required
+          </li>
+          <li *ngIf="form.controls.username.errors?.minLength || form.controls.username.errors?.maxLength">minimum characters:3, maximum characters: 15</li>
+       
+          <li *ngIf="usernameMsg">{{usernameMsg}}</li>
+        </ul>
+      </div>
+
+
+      <div [ngClass]="{'has-error':(form.controls.password.errors && form.controls.password.dirty) , 'has-success': (!form.controls.password.errors)}"
+        >
+        <label for="exampleinputPassword">PASSWORD</label>
+        <br>
+        <input type="password" 
+               formControlName="password" 
+               name="password" 
+               id="exampleinputPassword" 
+               class="form-control" 
+               placeholder="password">
+
+        <ul class="help-block">
+          <li *ngIf="form.controls.username.errors?.required && form.controls.username.dirty">
+            this field is required
+          </li>
+        </ul>
+      </div>
+
+      <div [ngClass]="{'has-error':(form.controls.confirm.errors && form.controls.confirm.dirty) , 'has-success': (!form.controls.confirm.errors)}"
+      >
+        <label for="exampleinputConfirmPassword">CONFIRM PASSWORD</label>
+        <br>
+        <input type="password" 
+               formControlName="confirm" 
+               name="confirm" 
+               id="exampleinputConfirmPassword" 
+               class="form-control" 
+               placeholder="password">
+
+               <ul class="help-block">
+            <li *ngIf="form.controls.confirm.errors?.required && form.controls.confirm.dirty">
+              this field is required
+            </li>
+            <li *ngIf="form.errors?.matchingPasswords && form.controls.confirm.dirty">Password do not match</li>
+          </ul>
+      </div>
+
+
+      <button 
+      
+      type="submit" 
+      class="btn btn-primary">Register</button>
+    </form>
+  </div>
+</div>

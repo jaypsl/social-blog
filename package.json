@@ -28,7 +28,7 @@
     "bootswatch": "^4.1.2",
     "core-js": "^2.5.7",
     "cors": "^2.8.4",
-    "express": "^4.16.3",
+    "express": "^4.17.3",
     "jsonwebtoken": "^8.3.0",
     "mongoose": "^5.2.4",
     "rxjs": "^6.2.2",
